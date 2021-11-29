@@ -1,0 +1,42 @@
+---
+title: Summary of results from CRU mentoring poll 
+author:
+  - Mark Scheuerell:
+      email: scheuerl@uw.edu
+      institute: wacfwru
+      correspondence: true
+institute:
+  - wacfwru: U.S. Geological Survey Washington Cooperative Fish and Wildlife Research Unit, School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA
+output:
+  pdf_document:
+    highlight: haddock
+    pandoc_args:
+      - '--lua-filter=scholarly-metadata.lua'
+      - '--lua-filter=author-info-blocks.lua'
+documentclass: article
+geometry: margin=1in
+linestretch: 1.1
+fontsize: 12pt
+header-includes:
+  - \usepackage{lineno}
+  - \linenumbers
+bibliography: "references.bib"
+csl: "frontiers-in-ecology-and-the-environment.csl"
+---
+
+```{r set_options, echo = FALSE, message = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+## load the package
+library("knitcitations")
+## clean out any existing .bib files
+cleanbib()
+## set pandoc for formatting
+options("citation_format" = "pandoc")
+```
+
+\vspace{0.2in}
+
+This is version `r paste0('0.',format(Sys.time(), '%y.%m.%d'))`.
+
+# Background
