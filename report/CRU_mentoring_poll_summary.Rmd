@@ -173,6 +173,10 @@ barplot(rev(format_admin_smry),
 
 # Career building
 
+Among the topics associated with career building, "Strategies for navigating the RGE process" was the most popular, but there is a clear need for those topics associated with personal well-being and achieving a proper work-life balance (Figure 3). In general, there was much better alignment between the number of possible mentees and potential mentors for this category.
+
+\vspace{0.25in}
+
 ```{r extract_career_data, echo = FALSE}
 ## extract career data
 data_career <- data_raw %>%
