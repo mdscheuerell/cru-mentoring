@@ -74,10 +74,39 @@ Within each topic, respondents were asked which format of mentoring they would p
 ```{r read_data, echo = FALSE, message = FALSE}
 data_raw <- readr::read_csv(here::here("data", "raw", "cru_peer_mentoring_survey.csv"))
 ```
+# Participant roles
+
+Poll respondents were asked what primary role they felt they would play in a mentoring program. The responses were quite evenly mixed between "mentee", "mentor", and "both" (Figure 1).
+
+\vspace{0.25in}
+
+```{r roles, echo = FALSE, message = FALSE, fig.align = "center", fig.dim = c(4,2), fig.cap = "Number of respondents who would consider their primary role as mentee, mentor, or both."}
+
+## participant roles
+roles_smry <- data_raw %>%
+  select(starts_with("In general")) %>%
+  table()
+
+## plot roles
+par(mai = c(0.9, 0.9, 0.1, 0.1),
+    omi = rep(0.1, 4))
+barplot(roles_smry,
+        border = NA,
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+
+```
+
+# Mentoring format
+
+Poll respondents largely felt that the format or environment within which they would prefer to receive (or give) mentoring advice would depend on the specific topic. In general, though, relatively few people thought one-on-one meetings would be preferable relative to small group discussions (see figures on following pages).
+
+
+\clearpage
 
 # Administration
 
-Among the many administrative tasks where unit staff could use some mentoring advice, "Use of Reston resources to enhance [a] program" and "Dealing with government sites & systems" received the most potential interest (Figure 1). The categories "Use of Reston resources to enhance program" and "Compliance with the Hatch Act" had the greatest disparity between the number of possible mentees and potential mentors.
+Among the many administrative tasks where unit staff could use some mentoring advice, "Use of Reston resources to enhance [a] program" and "Dealing with government sites & systems" received the most potential interest (Figure 2). The categories "Use of Reston resources to enhance program" and "Compliance with the Hatch Act" had the greatest disparity between the number of possible mentees and potential mentors.
 
 \vspace{0.25in}
 
@@ -173,7 +202,7 @@ barplot(rev(format_admin_smry),
 
 # Career building
 
-Among the topics associated with career building, "Strategies for navigating the RGE process" was the most popular, but there is a clear need for those topics associated with personal well-being and achieving a proper work-life balance (Figure 3). In general, there was much better alignment between the number of possible mentees and potential mentors for this category.
+Among the topics associated with career building, "Strategies for navigating the RGE process" was the most popular, but there is a clear need for those topics associated with personal well-being and achieving a proper work-life balance (Figure 4). In general, there was much better alignment between the number of possible mentees and potential mentors for this category.
 
 \vspace{0.25in}
 
@@ -269,7 +298,7 @@ barplot(rev(format_career_smry),
 
 # Conducting research
 
-Among the topics associated with conducting research, unit staff are clearly interested in more information about "Data archiving and ScienceBase", and there were very few people who felt they could serve as a mentor for this topic (Figure 5). Interestingly, there were more potential mentors than possible mentees for "Developing a research program".
+Among the topics associated with conducting research, unit staff are clearly interested in more information about "Data archiving and ScienceBase", and there were very few people who felt they could serve as a mentor for this topic (Figure 6). Interestingly, there were more potential mentors than possible mentees for "Developing a research program".
 
 \vspace{0.25in}
 
@@ -365,7 +394,7 @@ barplot(rev(format_research_smry),
 
 # Coordination with partners
 
-Perhaps not surprisingly, all of the topics within the category of coordination with partners received broad interest (Figure 7). Here, too, there were more potential mentors than possible mentees for "Working with cooperators" (and marginally so for "Funding").
+Perhaps not surprisingly, all of the topics within the category of coordination with partners received broad interest (Figure 8). Here, too, there were more potential mentors than possible mentees for "Working with cooperators" (and marginally so for "Funding").
 
 \vspace{0.25in}
 
@@ -461,7 +490,7 @@ barplot(rev(format_partners_smry),
 
 # Lab management
 
-The topics within the lab management category all received considerable interest (Figure 9). Many of these topics focus on elements of diversity, equity, inclusion, and justice, which is perhaps not too surprising. Of note, the topic of "DEIJ outreach & broader impacts" had very few potential mentors and wide interest among respondents. The topic of "Teaching/developing a course" had more potential mentors than possible mentees, as did "Mentoring students".
+The topics within the lab management category all received considerable interest (Figure 10). Many of these topics focus on elements of diversity, equity, inclusion, and justice, which is perhaps not too surprising. Of note, the topic of "DEIJ outreach & broader impacts" had very few potential mentors and wide interest among respondents. The topic of "Teaching/developing a course" had more potential mentors than possible mentees, as did "Mentoring students".
 
 \vspace{0.25in}
 
@@ -561,7 +590,7 @@ barplot(rev(format_lab_smry),
 
 # Service
 
-All of the topics within the service category were generally quite popular, but especially "Communication & social media", which also had the greatest discrepancy between possible mentees and mentors (Figure 11). Notably, the categories of "Providing constructive reviews" and "Involvement in professional organizations and meetings" had more potential mentors than interested mentees.
+All of the topics within the service category were generally quite popular, but especially "Communication & social media", which also had the greatest discrepancy between possible mentees and mentors (Figure 12). Notably, the categories of "Providing constructive reviews" and "Involvement in professional organizations and meetings" had more potential mentors than interested mentees.
 
 \vspace{0.25in}
 
