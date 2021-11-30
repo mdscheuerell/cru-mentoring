@@ -164,6 +164,91 @@ for (topics in other_topics_admin) {
 
 ## Career building
 
+```{r extract_career_data, echo = FALSE}
+## extract career data
+data_career <- data_raw %>%
+  select(starts_with("Career"))
+```
+
+```{r career_responses, echo = FALSE, fig.align = "center", fig.dim = c(6,5), fig.cap = "Number of responses by role (mentor or mentee) for each of the career categories."}
+## admin responses
+responses_career <- data_career %>%
+  select(!contains("format")) %>%
+  select(!contains("other topics"))
+
+## number of mentees
+mentees <- (responses_career == "Mentee" | responses_career == "Mentor;Mentee") %>%
+  apply(2, sum, na.rm = TRUE)
+
+## number of mentors
+mentors <- (responses_career == "Mentor" | responses_career == "Mentor;Mentee") %>%
+  apply(2, sum, na.rm = TRUE)
+
+## matrix of data for plotting
+data_plot <- rbind(mentees, mentors)
+
+## list of topics
+topics <- responses_career %>%
+  colnames() %>%
+  sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 0.6, 0.1),
+    omi = rep(0.1, 4))
+barplot(data_plot, beside = TRUE,
+        col = c("dodgerblue", "indianred"), border = NA,
+        names.arg = topics,
+        legend.text = TRUE,
+        args.legend = list(x = "top", inset = -0.1, bty = "n", border = NA,
+                           xpd = TRUE, cex = 0.8),
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+```
+
+```{r career_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the career category."}
+## mentoring format
+format_career <- data_career %>%
+  select(contains("format"))
+
+## mentoring format == depends
+format_smry <- format_career %>%
+  table()
+
+format_depends <- format_smry %>%
+  names() %>%
+  grep(pattern = "Depends")
+
+## mentoring format summary
+format_career_smry <- c(format_smry[-format_depends], sum(format_smry[format_depends]))
+names(format_career_smry)[3] <- "Depends on the topic"
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 0.1, 0.1),
+    omi = rep(0.1, 4))
+barplot(rev(format_career_smry),
+        border = NA,
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+
+```
+
+### Other career topics
+
+Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
+
+```{r career_other_topics, echo = FALSE, results = 'asis'}
+## other topics
+other_topics_career <- data_career %>%
+  select(contains("other topics")) %>%
+  unique() %>%
+  filter(`Career Building [other topics]` != is.na(.)) %>%
+  pull()
+
+for (topics in other_topics_career) {
+    cat("*", topics, "\n\n")
+}
+```
+
 ## Conducting research
 
 ## Coordination with partners
