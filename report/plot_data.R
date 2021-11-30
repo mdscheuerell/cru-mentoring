@@ -22,19 +22,16 @@ format_admin <- data_admin %>%
   select(contains("format"))
 
 ## mentoring format == depends
-format_depends <- format_admin %>%
-  table() %>%
+format_smry <- format_admin %>%
+  table()
+
+format_depends <- format_smry %>%
   names() %>%
   grep(pattern = "Depends")
 
 ## mentoring format summary
 format_admin_smry <- c(format_smry[-format_depends], sum(format_smry[format_depends]))
 names(format_admin_smry)[3] <- "Depends on the topic"
-
-## admin responses
-responses_admin <- data_admin %>%
-  select(!contains("format")) %>%
-  select(!contains("other topics"))
 
 ## plot response summary info
 par(mai = c(0.9, 2.9, 0.1, 0.1),
@@ -44,6 +41,11 @@ barplot(rev(format_admin_smry),
         horiz = TRUE, las = 1, cex.names = 0.8,
         xlab = "Number of responses")
 
+
+## admin responses
+responses_admin <- data_admin %>%
+  select(!contains("format")) %>%
+  select(!contains("other topics"))
 
 ## number of mentees
 mentees <- (responses_admin == "Mentee" | responses_admin == "Mentor;Mentee") %>%
@@ -78,7 +80,12 @@ barplot(data_plot, beside = TRUE,
 other_topics_admin <- data_admin %>%
   select(contains("other topics")) %>%
   unique() %>%
-  filter(`Administration topics [other topics]` != is.na(.))
+  filter(`Administration topics [other topics]` != is.na(.)) %>%
+  pull()
+
+for (topics in other_topics_admin) {
+  cat("*", topics, "\n\n")
+}
 
 
 
