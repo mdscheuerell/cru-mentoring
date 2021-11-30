@@ -1,4 +1,4 @@
-## 01_clean_data.R
+## plot_data.R
 
 ## this script cleans up the raw survey data for summarizing and plotting
 
@@ -13,25 +13,43 @@ data_raw <- readr::read_csv(here("data", "raw", "cru_peer_mentoring_survey.csv")
 
 #### admin ####
 
-## admin responses
+## admin data
 data_admin <- data_raw %>%
-  select(starts_with("Administration")) %>%
+  select(starts_with("Administration"))
+
+## mentoring format
+format_admin <- data_admin %>%
+  select(contains("format"))
+
+## format == depends
+format_admin %>%
+  pull() %>%
+  grepl(pattern = "Depends")
+
+## format == one-on-one
+format_admin %>%
+  pull() %>%
+  grepl(pattern = "One")
+
+
+## admin responses
+responses_admin <- data_admin %>%
   select(!contains("format")) %>%
   select(!contains("other topics"))
   
 ## number of mentees
-mentees <- (data_admin == "Mentee" | data_admin == "Mentor;Mentee") %>%
+mentees <- (responses_admin == "Mentee" | responses_admin == "Mentor;Mentee") %>%
   apply(2, sum, na.rm = TRUE)
 
 ## number of mentors
-mentors <- (data_admin == "Mentor" | data_admin == "Mentor;Mentee") %>%
+mentors <- (responses_admin == "Mentor" | responses_admin == "Mentor;Mentee") %>%
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
 data_plot <- rbind(mentees, mentors)
 
 ## list of topics
-topics <- data_admin %>%
+topics <- responses_admin %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
 
