@@ -461,6 +461,10 @@ barplot(rev(format_partners_smry),
 
 # Lab management
 
+The topics within the lab management category all received considerable interest (Figure 9). Many of these topics focus on elements of diversity, equity, inclusion, and justice, which is perhaps not too surprising. Of note, the topic of "DEIJ outreach & broader impacts" had very few potential mentors and wide interest among respondents. The topic of "Teaching/developing a course" had more potential mentors than possible mentees, as did "Mentoring students".
+
+\vspace{0.25in}
+
 ```{r extract_lab_data, echo = FALSE}
 ## extract lab data
 data_lab <- data_raw %>%
@@ -521,11 +525,13 @@ for (topics in other_topics_lab) {
 }
 ```
 
+\clearpage
+
 ## Mentoring format
 
 \vspace{0.25in}
 
-```{r lab_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the lab category."}
+```{r lab_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the lab management category."}
 ## mentoring format
 format_lab <- data_lab %>%
   select(contains("format"))
