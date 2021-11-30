@@ -304,7 +304,7 @@ other_topics_research <- data_research %>%
   filter(`Conducting Research [other topics]` != is.na(.)) %>%
   pull()
 
-for (topics in other_topics_career) {
+for (topics in other_topics_research) {
     cat("*", topics, "\n\n")
 }
 ```
@@ -337,6 +337,91 @@ barplot(rev(format_research_smry),
 ```
 
 ## Coordination with partners
+
+```{r extract_partners_data, echo = FALSE}
+## extract partners data
+data_partners <- data_raw %>%
+  select(starts_with("Coordination"))
+```
+
+```{r partners_responses, echo = FALSE, fig.align = "center", fig.dim = c(6,4.5), fig.cap = "Number of responses by role (mentor or mentee) for each of the partners categories."}
+## partners responses
+responses_partners <- data_partners %>%
+  select(!contains("format")) %>%
+  select(!contains("other topics"))
+
+## number of mentees
+mentees <- (responses_partners == "Mentee" | responses_partners == "Mentor;Mentee") %>%
+  apply(2, sum, na.rm = TRUE)
+
+## number of mentors
+mentors <- (responses_partners == "Mentor" | responses_partners == "Mentor;Mentee") %>%
+  apply(2, sum, na.rm = TRUE)
+
+## matrix of data for plotting
+data_plot <- rbind(mentees, mentors)
+
+## list of topics
+topics <- responses_partners %>%
+  colnames() %>%
+  sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 1, 0.1),
+    omi = rep(0.1, 4))
+barplot(data_plot, beside = TRUE,
+        col = c("dodgerblue", "indianred"), border = NA,
+        names.arg = topics,
+        legend.text = TRUE,
+        args.legend = list(x = "top", inset = -0.3, bty = "n", border = NA,
+                           xpd = TRUE, cex = 0.8),
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+```
+
+### Other partners topics
+
+Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
+
+```{r partners_other_topics, echo = FALSE, results = 'asis'}
+## other topics
+other_topics_partners <- data_partners %>%
+  select(contains("other topics")) %>%
+  unique() %>%
+  filter(`Coordination with partners [other topics]` != is.na(.)) %>%
+  pull()
+
+for (topics in other_topics_partners) {
+    cat("*", topics, "\n\n")
+}
+```
+
+```{r partners_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the partners category."}
+## mentoring format
+format_partners <- data_partners %>%
+  select(contains("format"))
+
+## mentoring format == depends
+format_smry <- format_partners %>%
+  table()
+
+format_depends <- format_smry %>%
+  names() %>%
+  grep(pattern = "Depends")
+
+## mentoring format summary
+format_partners_smry <- c(format_smry[-format_depends], sum(format_smry[format_depends]))
+names(format_partners_smry)[3] <- "Depends on the topic"
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 0.1, 0.1),
+    omi = rep(0.1, 4))
+barplot(rev(format_partners_smry),
+        border = NA,
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+
+```
 
 ## Lab management
 
