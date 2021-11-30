@@ -269,6 +269,10 @@ barplot(rev(format_career_smry),
 
 # Conducting research
 
+Among the topics associated with conducting research, unit staff are clearly interested in more information about "Data archiving and ScienceBase", and there were very few people who felt they could serve as a mentor for this topic (Figure 5). Interestingly, there were more potential mentors than possible mentees for "Developing a research program".
+
+\vspace{0.25in}
+
 ```{r extract_research_data, echo = FALSE}
 ## extract research data
 data_research <- data_raw %>%
@@ -360,6 +364,10 @@ barplot(rev(format_research_smry),
 \clearpage
 
 # Coordination with partners
+
+Perhaps not surprisingly, all of the topics within the category of coordination with partners received broad interest (Figure 7). Here, too, there were more potential mentors than possible mentees for "Working with cooperators" (and marginally so for "Funding").
+
+\vspace{0.25in}
 
 ```{r extract_partners_data, echo = FALSE}
 ## extract partners data
