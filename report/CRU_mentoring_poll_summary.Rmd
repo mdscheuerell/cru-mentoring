@@ -69,13 +69,7 @@ The survey included 6 general topics:
 
 6) Service
 
-Within each topic, respondents were asked which format of mentoring they would prefer:
-
-* One-on-one discussion
-
-* Small group discussion
-
-* Depends on the topic
+Within each topic, respondents were asked which format of mentoring they would prefer. Their options were a one-on-one discussion, a small group discussion, or that it would depend on the specific topic.
 
 ```{r read_data, echo = FALSE, message = FALSE}
 data_raw <- readr::read_csv(here::here("data", "raw", "cru_peer_mentoring_survey.csv"))
@@ -83,36 +77,13 @@ data_raw <- readr::read_csv(here::here("data", "raw", "cru_peer_mentoring_survey
 
 ## Administration
 
-```{r admin, echo = FALSE}
+```{r extract_admin_data, echo = FALSE}
 ## extract admin data
 data_admin <- data_raw %>%
   select(starts_with("Administration"))
+```
 
-## mentoring format
-format_admin <- data_admin %>%
-  select(contains("format"))
-
-## mentoring format == depends
-format_smry <- format_admin %>%
-  table()
-
-format_depends <- format_smry %>%
-  names() %>%
-  grep(pattern = "Depends")
-
-## mentoring format summary
-format_admin_smry <- c(format_smry[-format_depends], sum(format_smry[format_depends]))
-names(format_admin_smry)[3] <- "Depends on the topic"
-
-## plot response summary info
-par(mai = c(0.9, 2.9, 0.1, 0.1),
-    omi = rep(0.1, 4))
-barplot(rev(format_admin_smry),
-        border = NA,
-        horiz = TRUE, las = 1, cex.names = 0.8,
-        xlab = "Number of responses")
-
-
+```{r admin_responses, echo = FALSE, fig.align = "center", fig.dim = c(6,5.5), fig.cap = "Number of responses by role (mentor or mentee) for each of the administrative categories."}
 ## admin responses
 responses_admin <- data_admin %>%
   select(!contains("format")) %>%
@@ -145,10 +116,38 @@ barplot(data_plot, beside = TRUE,
                            xpd = TRUE, cex = 0.8),
         horiz = TRUE, las = 1, cex.names = 0.8,
         xlab = "Number of responses")
+```
+
+```{r admin_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the administration category."}
+## mentoring format
+format_admin <- data_admin %>%
+  select(contains("format"))
+
+## mentoring format == depends
+format_smry <- format_admin %>%
+  table()
+
+format_depends <- format_smry %>%
+  names() %>%
+  grep(pattern = "Depends")
+
+## mentoring format summary
+format_admin_smry <- c(format_smry[-format_depends], sum(format_smry[format_depends]))
+names(format_admin_smry)[3] <- "Depends on the topic"
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 0.1, 0.1),
+    omi = rep(0.1, 4))
+barplot(rev(format_admin_smry),
+        border = NA,
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
 
 ```
 
 ### Other administration topics
+
+Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
 ```{r other_topics, echo = FALSE, results = 'asis'}
 ## other topics
