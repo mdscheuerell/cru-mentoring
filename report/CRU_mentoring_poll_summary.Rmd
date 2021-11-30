@@ -51,7 +51,7 @@ This is version `r format(Sys.time(), '%y.%m.%d')`.
 
 # Background
 
-At the request of the CRU management team, the CRU DEI committee\footnote{DEI committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Amanda Rosenberger (TN), Reynaldo Patino (TX), Mark Scheuerell (WA), Abby Powell (Chair; FL), Wendy Turner (WI).} developed an online survey to gather information about the mentoring needs and services of unit scientists and supervisors. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
+At the request of the CRU management team, the CRU DEI committee\footnote{DEI committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Amanda Rosenberger (TN), Reynaldo Patino (TX), Abby Powell (Chair; FL), Mark Scheuerell (WA), Wendy Turner (WI).} developed an online survey to gather information about the mentoring needs and services of unit scientists and supervisors. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
 
 ## Survey topics
 
@@ -76,6 +76,10 @@ data_raw <- readr::read_csv(here::here("data", "raw", "cru_peer_mentoring_survey
 ```
 
 # Administration
+
+Among the many administrative tasks where unit staff could use some mentoring advice, "Use of Reston resources to enhance [a] program" and "Dealing with government sites & systems" received the most potential interest (Figure 1). The categories "Use of Reston resources to enhance program" and "Compliance with the Hatch Act" had the greatest disparity between the number of possible mentees and potential mentors.
+
+\vspace{0.25in}
 
 ```{r extract_admin_data, echo = FALSE}
 ## extract admin data
@@ -135,7 +139,9 @@ for (topics in other_topics_admin) {
 }
 ```
 
-\vspace{0.5in}
+## Mentoring format
+
+\vspace{0.25in}
 
 ```{r admin_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the administration category."}
 ## mentoring format
@@ -225,7 +231,9 @@ for (topics in other_topics_career) {
 }
 ```
 
-\vspace{0.5in}
+## Mentoring format
+
+\vspace{0.25in}
 
 ```{r career_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the career category."}
 ## mentoring format
@@ -315,7 +323,9 @@ for (topics in other_topics_research) {
 }
 ```
 
-\vspace{0.5in}
+## Mentoring format
+
+\vspace{0.25in}
 
 ```{r research_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the research category."}
 ## mentoring format
@@ -405,7 +415,9 @@ for (topics in other_topics_partners) {
 }
 ```
 
-\vspace{0.5in}
+## Mentoring format
+
+\vspace{0.25in}
 
 ```{r partners_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the partners category."}
 ## mentoring format
@@ -497,7 +509,9 @@ for (topics in other_topics_lab) {
 }
 ```
 
-\vspace{0.5in}
+## Mentoring format
+
+\vspace{0.25in}
 
 ```{r lab_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the lab category."}
 ## mentoring format
@@ -591,7 +605,9 @@ for (topics in other_topics_service) {
 }
 ```
 
-\vspace{0.5in}
+## Mentoring format
+
+\vspace{0.25in}
 
 ```{r service_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the service category."}
 ## mentoring format
