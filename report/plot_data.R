@@ -13,7 +13,7 @@ data_raw <- readr::read_csv(here("data", "raw", "cru_peer_mentoring_survey.csv")
 
 #### admin ####
 
-## admin data
+## extract admin data
 data_admin <- data_raw %>%
   select(starts_with("Administration"))
 
@@ -72,4 +72,13 @@ barplot(data_plot, beside = TRUE,
                            xpd = TRUE, cex = 0.8),
         horiz = TRUE, las = 1, cex.names = 0.8,
         xlab = "Number of responses")
+
+
+## other topics
+other_topics_admin <- data_admin %>%
+  select(contains("other topics")) %>%
+  unique() %>%
+  filter(`Administration topics [other topics]` != is.na(.))
+
+
 
