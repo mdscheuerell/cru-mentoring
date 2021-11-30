@@ -21,22 +21,30 @@ data_admin <- data_raw %>%
 format_admin <- data_admin %>%
   select(contains("format"))
 
-## format == depends
-format_admin %>%
-  pull() %>%
-  grepl(pattern = "Depends")
+## mentoring format == depends
+format_depends <- format_admin %>%
+  table() %>%
+  names() %>%
+  grep(pattern = "Depends")
 
-## format == one-on-one
-format_admin %>%
-  pull() %>%
-  grepl(pattern = "One")
-
+## mentoring format summary
+format_admin_smry <- c(format_smry[-format_depends], sum(format_smry[format_depends]))
+names(format_admin_smry)[3] <- "Depends on the topic"
 
 ## admin responses
 responses_admin <- data_admin %>%
   select(!contains("format")) %>%
   select(!contains("other topics"))
-  
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 0.1, 0.1),
+    omi = rep(0.1, 4))
+barplot(rev(format_admin_smry),
+        border = NA,
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+
+
 ## number of mentees
 mentees <- (responses_admin == "Mentee" | responses_admin == "Mentor;Mentee") %>%
   apply(2, sum, na.rm = TRUE)
@@ -53,14 +61,14 @@ topics <- responses_admin %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
 
-## plot summary info
+## plot response summary info
 par(mai = c(0.9, 2.9, 0.6, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot, beside = TRUE,
         col = c("dodgerblue", "indianred"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
-        args.legend = list(x = "top", inset = -0.2, bty = "n", border = NA,
+        args.legend = list(x = "top", inset = -0.1, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
         horiz = TRUE, las = 1, cex.names = 0.8,
         xlab = "Number of responses")
