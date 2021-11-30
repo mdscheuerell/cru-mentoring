@@ -2,7 +2,7 @@
 title: Summary of results from CRU mentoring poll 
 author:
   - Mark Scheuerell:
-      email: scheuerl@uw.edu
+      email: scheuerl@uw.edu; mscheuerell@usgs.gov
       institute: wacfwru
       correspondence: true
 institute:
@@ -17,6 +17,7 @@ documentclass: article
 geometry: margin=1in
 linestretch: 1.1
 fontsize: 12pt
+urlcolor: blue
 header-includes:
   - \usepackage{lineno}
   - \linenumbers
@@ -27,16 +28,26 @@ csl: "frontiers-in-ecology-and-the-environment.csl"
 ```{r set_options, echo = FALSE, message = FALSE}
 options(width = 100)
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
-## load the package
-library("knitcitations")
-## clean out any existing .bib files
-cleanbib()
-## set pandoc for formatting
-options("citation_format" = "pandoc")
 ```
+
+```{r citation_inits, echo = FALSE, message = FALSE}
+## load package
+# library("knitcitations")
+## clean out any existing .bib files
+# cleanbib()
+## set pandoc for formatting
+# options("citation_format" = "pandoc")
+```
+
 
 \vspace{0.2in}
 
-This is version `r paste0('0.',format(Sys.time(), '%y.%m.%d'))`.
+This is version `r format(Sys.time(), '%y.%m.%d')`.
+
 
 # Background
+
+At the request of the CRU management team, the CRU DEI committee\footnote{Committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Amanda Rosenberger (TN), Reynaldo Patino (TX), Mark Scheuerell (WA), Abby Powell (Chair; FL), Wendy Turner (WI)} developed an online survey to gather information about the mentoring needs and services of unit scientists and supervisors. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
+
+
+
