@@ -16,7 +16,7 @@ output:
 documentclass: article
 geometry: margin=1in
 linestretch: 1.1
-fontsize: 12pt
+fontsize: 11pt
 urlcolor: blue
 header-includes:
   - \usepackage{lineno}
@@ -47,7 +47,44 @@ This is version `r format(Sys.time(), '%y.%m.%d')`.
 
 # Background
 
-At the request of the CRU management team, the CRU DEI committee\footnote{Committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Amanda Rosenberger (TN), Reynaldo Patino (TX), Mark Scheuerell (WA), Abby Powell (Chair; FL), Wendy Turner (WI)} developed an online survey to gather information about the mentoring needs and services of unit scientists and supervisors. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
+At the request of the CRU management team, the CRU DEI committee\footnote{DEI committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Amanda Rosenberger (TN), Reynaldo Patino (TX), Mark Scheuerell (WA), Abby Powell (Chair; FL), Wendy Turner (WI).} developed an online survey to gather information about the mentoring needs and services of unit scientists and supervisors. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
+
+# Survey topics
+
+The survey included 6 general topics:
+
+1) Administration
+
+2) Career building
+
+3) Conducting research
+
+4) Coordination with partners
+
+5) Lab management
+
+6) Service
+
+Within each topic, respondents were asked which format of mentoring they would prefer:
+
+* One-on-one discussion
+
+* Small group discussion
+
+* Depends on the topic
 
 
+## Administration
+
+
+
+## Career building
+
+## Conducting research
+
+## Coordination with partners
+
+## Lab management
+
+## Service
 
