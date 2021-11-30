@@ -561,6 +561,10 @@ barplot(rev(format_lab_smry),
 
 # Service
 
+All of the topics within the service category were generally quite popular, but especially "Communication & social media", which also had the greatest discrepancy between possible mentees and mentors (Figure 11). Notably, the categories of "Providing constructive reviews" and "Involvement in professional organizations and meetings" had more potential mentors than interested mentees.
+
+\vspace{0.25in}
+
 ```{r extract_service_data, echo = FALSE}
 ## extract service data
 data_service <- data_raw %>%
@@ -622,6 +626,8 @@ for (topics in other_topics_service) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\clearpage
 
 ## Mentoring format
 
