@@ -75,7 +75,7 @@ Within each topic, respondents were asked which format of mentoring they would p
 data_raw <- readr::read_csv(here::here("data", "raw", "cru_peer_mentoring_survey.csv"))
 ```
 
-## Administration
+# Administration
 
 ```{r extract_admin_data, echo = FALSE}
 ## extract admin data
@@ -118,7 +118,7 @@ barplot(data_plot, beside = TRUE,
         xlab = "Number of responses")
 ```
 
-### Other administration topics
+## Other administration topics
 
 Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
@@ -134,6 +134,8 @@ for (topics in other_topics_admin) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\vspace{0.5in}
 
 ```{r admin_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the administration category."}
 ## mentoring format
@@ -161,7 +163,9 @@ barplot(rev(format_admin_smry),
 
 ```
 
-## Career building
+\clearpage
+
+# Career building
 
 ```{r extract_career_data, echo = FALSE}
 ## extract career data
@@ -204,7 +208,7 @@ barplot(data_plot, beside = TRUE,
         xlab = "Number of responses")
 ```
 
-### Other career topics
+## Other career topics
 
 Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
@@ -220,6 +224,8 @@ for (topics in other_topics_career) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\vspace{0.5in}
 
 ```{r career_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the career category."}
 ## mentoring format
@@ -247,7 +253,9 @@ barplot(rev(format_career_smry),
 
 ```
 
-## Conducting research
+\clearpage
+
+# Conducting research
 
 ```{r extract_research_data, echo = FALSE}
 ## extract research data
@@ -290,7 +298,7 @@ barplot(data_plot, beside = TRUE,
         xlab = "Number of responses")
 ```
 
-### Other research topics
+## Other research topics
 
 Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
@@ -306,6 +314,8 @@ for (topics in other_topics_research) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\vspace{0.5in}
 
 ```{r research_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the research category."}
 ## mentoring format
@@ -333,7 +343,9 @@ barplot(rev(format_research_smry),
 
 ```
 
-## Coordination with partners
+\clearpage
+
+# Coordination with partners
 
 ```{r extract_partners_data, echo = FALSE}
 ## extract partners data
@@ -376,7 +388,7 @@ barplot(data_plot, beside = TRUE,
         xlab = "Number of responses")
 ```
 
-### Other partners topics
+## Other partners topics
 
 Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
@@ -392,6 +404,8 @@ for (topics in other_topics_partners) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\vspace{0.5in}
 
 ```{r partners_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the partners category."}
 ## mentoring format
@@ -419,7 +433,9 @@ barplot(rev(format_partners_smry),
 
 ```
 
-## Lab management
+\clearpage
+
+# Lab management
 
 ```{r extract_lab_data, echo = FALSE}
 ## extract lab data
@@ -464,7 +480,7 @@ barplot(data_plot, beside = TRUE,
         xlab = "Number of responses")
 ```
 
-### Other lab topics
+## Other lab topics
 
 Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
@@ -480,6 +496,8 @@ for (topics in other_topics_lab) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\vspace{0.5in}
 
 ```{r lab_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the lab category."}
 ## mentoring format
@@ -507,7 +525,9 @@ barplot(rev(format_lab_smry),
 
 ```
 
-## Service
+\clearpage
+
+# Service
 
 ```{r extract_service_data, echo = FALSE}
 ## extract service data
@@ -536,8 +556,10 @@ data_plot <- rbind(mentees, mentors)
 topics <- responses_service %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2") %>%
-  sub(pattern = "(local high schools, mentoring programs, etc.) ",
-      replacement = "", fixed = TRUE)
+  sub(pattern = "Service (editor",
+      replacement = "Editor", fixed = TRUE) %>%
+  sub(pattern = "etc)",
+      replacement = "etc", fixed = TRUE)
 
 ## plot response summary info
 par(mai = c(0.9, 3.9, 1, 0.1),
@@ -552,7 +574,7 @@ barplot(data_plot, beside = TRUE,
         xlab = "Number of responses")
 ```
 
-### Other service topics
+## Other service topics
 
 Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
 
@@ -568,6 +590,8 @@ for (topics in other_topics_service) {
     cat("*", topics, "\n\n")
 }
 ```
+
+\vspace{0.5in}
 
 ```{r service_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the service category."}
 ## mentoring format
