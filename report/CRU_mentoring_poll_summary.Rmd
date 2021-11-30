@@ -509,3 +509,89 @@ barplot(rev(format_lab_smry),
 
 ## Service
 
+```{r extract_service_data, echo = FALSE}
+## extract service data
+data_service <- data_raw %>%
+  select(starts_with("Service"))
+```
+
+```{r service_responses, echo = FALSE, fig.align = "center", fig.dim = c(7, 5), fig.cap = "Number of responses by role (mentor or mentee) for each of the service categories."}
+## service responses
+responses_service <- data_service %>%
+  select(!contains("format")) %>%
+  select(!contains("other topics"))
+
+## number of mentees
+mentees <- (responses_service == "Mentee" | responses_service == "Mentor;Mentee") %>%
+  apply(2, sum, na.rm = TRUE)
+
+## number of mentors
+mentors <- (responses_service == "Mentor" | responses_service == "Mentor;Mentee") %>%
+  apply(2, sum, na.rm = TRUE)
+
+## matrix of data for plotting
+data_plot <- rbind(mentees, mentors)
+
+## list of topics
+topics <- responses_service %>%
+  colnames() %>%
+  sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2") %>%
+  sub(pattern = "(local high schools, mentoring programs, etc.) ",
+      replacement = "", fixed = TRUE)
+
+## plot response summary info
+par(mai = c(0.9, 3.9, 1, 0.1),
+    omi = rep(0.1, 4))
+barplot(data_plot, beside = TRUE,
+        col = c("dodgerblue", "indianred"), border = NA,
+        names.arg = topics,
+        legend.text = TRUE,
+        args.legend = list(x = "top", inset = -0.2, bty = "n", border = NA,
+                           xpd = TRUE, cex = 0.8),
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+```
+
+### Other service topics
+
+Poll respondents were offered an opportunity to add other topics for which they would like some mentoring advice. Here is a list of those responses. 
+
+```{r service_other_topics, echo = FALSE, results = 'asis'}
+## other topics
+other_topics_service <- data_service %>%
+  select(contains("other topics")) %>%
+  unique() %>%
+  filter(`Service [other topics]` != is.na(.)) %>%
+  pull()
+
+for (topics in other_topics_service) {
+    cat("*", topics, "\n\n")
+}
+```
+
+```{r service_formats, echo = FALSE, fig.align = "center", fig.dim = c(6,2), fig.cap = "Number of responses for each of the proposed mentoring formats for the service category."}
+## mentoring format
+format_service <- data_service %>%
+  select(contains("format"))
+
+## mentoring format != depends
+format_smry <- format_service %>%
+  table()
+format_other <- format_smry %>%
+  names()
+other_idx <- format_other == "One-on-one discussions" | format_other == "Small group discussions"
+
+## mentoring format summary
+format_service_smry <- c(format_smry[other_idx], sum(format_smry[-other_idx]))
+names(format_service_smry)[3] <- "Depends on the topic"
+
+## plot response summary info
+par(mai = c(0.9, 2.9, 0.1, 0.1),
+    omi = rep(0.1, 4))
+barplot(rev(format_service_smry),
+        border = NA,
+        horiz = TRUE, las = 1, cex.names = 0.8,
+        xlab = "Number of responses")
+
+```
+
