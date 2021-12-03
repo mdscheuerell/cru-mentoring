@@ -51,7 +51,7 @@ This is version `r format(Sys.time(), '%y.%m.%d')`.
 
 # Background
 
-At the request of the CRU management team, the CRU DEI committee\footnote{DEI committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Amanda Rosenberger (TN), Reynaldo Patino (TX), Abby Powell (Chair; FL), Mark Scheuerell (WA), Wendy Turner (WI).} developed an online survey to gather information about the mentoring needs and services of unit scientists and supervisors. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
+The CRU DEI committee\footnote{DEI committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Reynaldo Patino (TX), Abby Powell (Chair; FL), Amanda Rosenberger (TN), Mark Scheuerell (WA), Wendy Turner (WI).} feels that a mentoring program within the CRU program will help us become an inclusive and welcoming environment to all of our employees, and help with retention. Thus, the committee developed an online survey to gather information about the mentoring needs and services of unit scientists. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
 
 ## Survey topics
 
@@ -131,7 +131,7 @@ mentors <- (responses_admin == "Mentor" | responses_admin == "Mentor;Mentee") %>
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
-data_plot <- rbind(mentors, mentees)
+data_plot_admin <- rbind(mentors, mentees)
 
 ## list of topics
 topics <- responses_admin %>%
@@ -141,7 +141,7 @@ topics <- responses_admin %>%
 ## plot response summary info
 par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
-barplot(data_plot, beside = TRUE,
+barplot(data_plot_admin, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
@@ -227,7 +227,7 @@ mentors <- (responses_career == "Mentor" | responses_career == "Mentor;Mentee") 
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
-data_plot <- rbind(mentors, mentees)
+data_plot_career <- rbind(mentors, mentees)
 
 ## list of topics
 topics <- responses_career %>%
@@ -237,7 +237,7 @@ topics <- responses_career %>%
 ## plot response summary info
 par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
-barplot(data_plot, beside = TRUE,
+barplot(data_plot_career, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
@@ -323,7 +323,7 @@ mentors <- (responses_research == "Mentor" | responses_research == "Mentor;Mente
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
-data_plot <- rbind(mentors, mentees)
+data_plot_research <- rbind(mentors, mentees)
 
 ## list of topics
 topics <- responses_research %>%
@@ -333,7 +333,7 @@ topics <- responses_research %>%
 ## plot response summary info
 par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
-barplot(data_plot, beside = TRUE,
+barplot(data_plot_research, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
@@ -419,7 +419,7 @@ mentors <- (responses_partners == "Mentor" | responses_partners == "Mentor;Mente
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
-data_plot <- rbind(mentors, mentees)
+data_plot_partners <- rbind(mentors, mentees)
 
 ## list of topics
 topics <- responses_partners %>%
@@ -429,7 +429,7 @@ topics <- responses_partners %>%
 ## plot response summary info
 par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
-barplot(data_plot, beside = TRUE,
+barplot(data_plot_partners, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
@@ -515,7 +515,7 @@ mentors <- (responses_lab == "Mentor" | responses_lab == "Mentor;Mentee") %>%
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
-data_plot <- rbind(mentors, mentees)
+data_plot_lab <- rbind(mentors, mentees)
 
 ## list of topics
 topics <- responses_lab %>%
@@ -527,7 +527,7 @@ topics <- responses_lab %>%
 ## plot response summary info
 par(mai = c(0.9, 3.9, 1, 0.1),
     omi = rep(0.1, 4))
-barplot(data_plot, beside = TRUE,
+barplot(data_plot_lab, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
@@ -615,7 +615,7 @@ mentors <- (responses_service == "Mentor" | responses_service == "Mentor;Mentee"
   apply(2, sum, na.rm = TRUE)
 
 ## matrix of data for plotting
-data_plot <- rbind(mentors, mentees)
+data_plot_service <- rbind(mentors, mentees)
 
 ## list of topics
 topics <- responses_service %>%
@@ -629,7 +629,7 @@ topics <- responses_service %>%
 ## plot response summary info
 par(mai = c(0.9, 3.9, 1, 0.1),
     omi = rep(0.1, 4))
-barplot(data_plot, beside = TRUE,
+barplot(data_plot_service, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
         names.arg = topics,
         legend.text = TRUE,
