@@ -1,12 +1,36 @@
 ---
-title: Summary of results from CRU mentoring poll 
+title: Summary of results from the CRU mentoring poll 
 author:
   - Mark Scheuerell:
       email: scheuerl@uw.edu; mscheuerell@usgs.gov
       institute: wacfwru
       correspondence: true
+  - Graziella DiRenzo:
+       institute: macfwru
+  - Angela Fuller:
+       institute: nycfwru
+  - J. Barry Grand:
+       institute: hq
+  - Mark Henderson:
+       institute: cacfwru
+  - Reynaldo Patino:
+       institute: txcfwru
+  - Abby Powell:
+       institute: flcfwru
+  - Amanda Rosenberger:
+       institute: tncfwru
+  - Wendy Turner:
+       institute: wicfwru
 institute:
   - wacfwru: U.S. Geological Survey Washington Cooperative Fish and Wildlife Research Unit, School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA
+  - macfwru: U.S. Geological Survey Massachusetts Cooperative Fish and Wildlife Research Unit, Department of Environmental Conservation, University of Massachusetts, Amherst, MA
+  - nycfwru: U.S. Geological Survey New York Cooperative Fish and Wildlife Research Unit, Department of Natural Resources, Cornell University, Ithaca, NY
+  - hq: U.S. Geological Survey Cooperative Research Units Program, Reston, VA
+  - cacfwru: U.S. Geological Survey California Cooperative Fish and Wildlife Research Unit, Department of Fisheries Biology, Humbodlt State University, Arcata, CA
+  - txcfwru: U.S. Geological Survey Texas Cooperative Fish and Wildlife Research Unit, Department of Natural Resources Management, Texas Tech University, Lubbock, TX
+  - flcfwru: U.S. Geological Survey Florida Cooperative Fish and Wildlife Research Unit, Wildlife Ecology and Conservation Department, University of Florida, Gainesville, FL
+  - tncfwru: U.S. Geological Survey Tennesee Cooperative Fisheries Research Unit, Department of Biology, Tennessee Tech University, Cookeville, TN
+  - wicfwru: U.S. Geological Survey Wisconsin Cooperative Wildlife Research Unit, Department of Forest and Wildlife Ecology, University of Wisconsin-Madison, Madison, WI
 output:
   pdf_document:
     highlight: haddock
@@ -51,7 +75,7 @@ This is version `r format(Sys.time(), '%y.%m.%d')`.
 
 # Background
 
-The CRU DEI committee\footnote{DEI committee members are Graziella DiRenzo (MA), Angela Fuller (NY), J. Barry Grand (HQ); Mark Henderson (CA), Reynaldo Patino (TX), Abby Powell (Chair; FL), Amanda Rosenberger (TN), Mark Scheuerell (WA), Wendy Turner (WI).} feels that a mentoring program within the CRU program will help us become an inclusive and welcoming environment to all of our employees, and help with retention. Thus, the committee developed an online survey to gather information about the mentoring needs and services of unit scientists. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
+The CRU DEI committee feels that a mentoring program within the CRU program will help us become a more inclusive and welcoming environment for all of our employees, post-docs, and students, and help with retention as well. Thus, the committee developed an online survey to gather information about the mentoring needs and services of unit scientists. The committee emailed a [link to the survey](https://forms.gle/nFUXpAcgTFv6xoQC8) via Shana Coulby in mid-October and asked people to respond within 3 weeks. Ultimately, we received responses from 60 individuals, which are summarized in this report.
 
 ## Survey topics
 
@@ -74,11 +98,10 @@ Within each topic, respondents were asked which format of mentoring they would p
 ```{r read_data, echo = FALSE, message = FALSE}
 data_raw <- readr::read_csv(here::here("data", "raw", "cru_peer_mentoring_survey.csv"))
 ```
+
 # Participant roles
 
 Poll respondents were asked what primary role they felt they would play in a mentoring program. The responses were quite evenly mixed between "mentee", "mentor", and "both" (Figure 1).
-
-\vspace{0.25in}
 
 ```{r roles, echo = FALSE, message = FALSE, fig.align = "center", fig.dim = c(4,2), fig.cap = "Number of respondents who would consider their primary role as mentee, mentor, or both."}
 
