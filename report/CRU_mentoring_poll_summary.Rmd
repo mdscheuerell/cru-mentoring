@@ -134,7 +134,7 @@ mentors <- (responses_admin == "Mentor" | responses_admin == "Mentor;Mentee") %>
 data_plot_admin <- rbind(mentors, mentees)
 
 ## list of topics
-topics <- responses_admin %>%
+topics_admin <- responses_admin %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
 
@@ -143,7 +143,7 @@ par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot_admin, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
-        names.arg = topics,
+        names.arg = topics_admin,
         legend.text = TRUE,
         args.legend = list(x = "top", inset = -0.1, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
@@ -230,7 +230,7 @@ mentors <- (responses_career == "Mentor" | responses_career == "Mentor;Mentee") 
 data_plot_career <- rbind(mentors, mentees)
 
 ## list of topics
-topics <- responses_career %>%
+topics_career <- responses_career %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
 
@@ -239,7 +239,7 @@ par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot_career, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
-        names.arg = topics,
+        names.arg = topics_career,
         legend.text = TRUE,
         args.legend = list(x = "top", inset = -0.2, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
@@ -326,7 +326,7 @@ mentors <- (responses_research == "Mentor" | responses_research == "Mentor;Mente
 data_plot_research <- rbind(mentors, mentees)
 
 ## list of topics
-topics <- responses_research %>%
+topics_research <- responses_research %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
 
@@ -335,7 +335,7 @@ par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot_research, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
-        names.arg = topics,
+        names.arg = topics_research,
         legend.text = TRUE,
         args.legend = list(x = "top", inset = -0.3, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
@@ -422,7 +422,7 @@ mentors <- (responses_partners == "Mentor" | responses_partners == "Mentor;Mente
 data_plot_partners <- rbind(mentors, mentees)
 
 ## list of topics
-topics <- responses_partners %>%
+topics_partners <- responses_partners %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2")
 
@@ -431,7 +431,7 @@ par(mai = c(0.9, 2.9, 1, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot_partners, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
-        names.arg = topics,
+        names.arg = topics_partners,
         legend.text = TRUE,
         args.legend = list(x = "top", inset = -0.3, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
@@ -518,7 +518,7 @@ mentors <- (responses_lab == "Mentor" | responses_lab == "Mentor;Mentee") %>%
 data_plot_lab <- rbind(mentors, mentees)
 
 ## list of topics
-topics <- responses_lab %>%
+topics_lab <- responses_lab %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2") %>%
   sub(pattern = "(local high schools, mentoring programs, etc.) ",
@@ -529,7 +529,7 @@ par(mai = c(0.9, 3.9, 1, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot_lab, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
-        names.arg = topics,
+        names.arg = topics_lab,
         legend.text = TRUE,
         args.legend = list(x = "top", inset = -0.2, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
@@ -618,7 +618,7 @@ mentors <- (responses_service == "Mentor" | responses_service == "Mentor;Mentee"
 data_plot_service <- rbind(mentors, mentees)
 
 ## list of topics
-topics <- responses_service %>%
+topics_service <- responses_service %>%
   colnames() %>%
   sub(pattern = "(^.*\\[)(.*)(\\])", replacement = "\\2") %>%
   sub(pattern = "Service (editor",
@@ -631,7 +631,7 @@ par(mai = c(0.9, 3.9, 1, 0.1),
     omi = rep(0.1, 4))
 barplot(data_plot_service, beside = TRUE,
         col = c("indianred", "dodgerblue"), border = NA,
-        names.arg = topics,
+        names.arg = topics_service,
         legend.text = TRUE,
         args.legend = list(x = "top", inset = -0.2, bty = "n", border = NA,
                            xpd = TRUE, cex = 0.8),
@@ -686,5 +686,38 @@ barplot(rev(format_service_smry),
         horiz = TRUE, las = 1, cex.names = 0.8,
         xlab = "Number of responses")
 
+```
+
+\clearpage
+
+# Summary
+
+Across all 40 of the mentoring topics (Table 1), the top 3 most popular options were:
+
+1. Data archiving and ScienceBase
+
+2. Use of Reston resources to enhance program
+
+3. Attracting graduate students from diverse backgrounds
+
+```{r summary, echo = FALSE}
+data_plot_all <- cbind(data_plot_admin, data_plot_career,
+                       data_plot_research, data_plot_partners,
+                       data_plot_lab, data_plot_service) %>%
+  t() 
+
+rownames(data_plot_all) <- c(topics_admin, topics_career,
+                             topics_research, topics_partners,
+                             topics_lab, topics_service)
+
+data_summary <- data_plot_all %>%
+  as_tibble(rownames = "topic") %>%
+  relocate(mentees, .after = topic) %>%
+  arrange(desc(mentees))
+
+knitr::kable(data_summary,
+             col.names = c("Topic", "Mentees", "Mentors"),
+             align = "lcc",
+             caption = "List of mentoring topics ranked by number of mentee responses.")
 ```
 
