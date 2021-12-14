@@ -42,11 +42,6 @@ geometry: margin=1in
 linestretch: 1.1
 fontsize: 11pt
 urlcolor: blue
-header-includes:
-  - \usepackage{lineno}
-  - \linenumbers
-bibliography: "references.bib"
-csl: "frontiers-in-ecology-and-the-environment.csl"
 ---
 
 ```{r set_options, echo = FALSE, message = FALSE}
